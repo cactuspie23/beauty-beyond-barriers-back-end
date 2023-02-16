@@ -11,6 +11,17 @@ const create = async (req, res) => {
   }
 }
 
+const index = async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({ category: 'asc', name:"asc" })
+    res.status(200).json(products)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
+  index,
 }

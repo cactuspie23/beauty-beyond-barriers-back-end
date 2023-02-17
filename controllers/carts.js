@@ -50,15 +50,15 @@ const create = async (req, res) => {
 }
 
 const deleteCart = async (req, res) => {
-  const userId = req.params.userId
-  const productId = req.params.productId
+  const userId = req.user.profile
+  // const productId = req.params.productId
   try {
-    let cart = await Cart.findOne({ userId })
-    let productIndex = cart.products.findIndex(p => p.productId == productId)
-    if (productIndex > -1) {
-      cart.products.splice(productIndex, 1)
-    }
-    cart = await cart.save()
+    let cart = await Cart.findOneAndDelete({ customer: userId })
+    // let productIndex = cart.products.findIndex(p => p.productId == productId)
+    // if (productIndex > -1) {
+    //   cart.products.splice(productIndex, 1)
+    // }
+    // cart = await cart.save()
     res.status(201).json(cart)
   } catch (error) {
     console.log(error)

@@ -2,12 +2,12 @@ import { Product } from "../models/product.js"
 import { Cart } from "../models/cart.js"
 import e from "cors"
 
-const index = async (req, res) => {
+const show = async (req, res) => {
+  const userId = req.user.profile
   try {
-    const carts = await Cart.find({})
-      .sort({ createdAt: 'asc' })
-    if (carts) {
-      res.json(carts)
+    const cart = await Cart.find({customer: userId})
+    if(cart){
+      res.json(cart)
     } else {
       res.json(null)
     }
@@ -67,7 +67,7 @@ const deleteCart = async (req, res) => {
 }
 
 export {
-  index,
+  show, 
   create,
   deleteCart
 }

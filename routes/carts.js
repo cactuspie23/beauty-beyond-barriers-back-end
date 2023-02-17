@@ -9,7 +9,7 @@ const router = Router()
 
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
-router.get('/', checkAuth, cartsCtrl.index)
+router.get('/', checkAuth, cartsCtrl.show)
 router.post('/', checkAuth, cartsCtrl.create)
 router.delete('/:id', checkAuth, cartsCtrl.deleteCart)
 

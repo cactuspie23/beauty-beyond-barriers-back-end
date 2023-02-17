@@ -29,4 +29,14 @@ function addPhoto(req, res) {
   })
 }
 
-export { index, addPhoto }
+const show = async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.id)
+    res.status(200).json(profile)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+export { index, addPhoto, show }

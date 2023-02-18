@@ -11,6 +11,6 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, cartsCtrl.show)
 router.post('/', checkAuth, cartsCtrl.create)
-// router.delete('/:id', checkAuth, cartsCtrl.deleteCart)
 router.delete('/', checkAuth, cartsCtrl.deleteCart)
+router.delete('/:id', checkAuth, cartsCtrl.deleteProductFromCart)
 export { router }
